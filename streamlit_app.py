@@ -1,4 +1,11 @@
 import streamlit as st
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+import numpy as np
+import pandas as pd
+import yfinance as yf
+from datetime import datetime, timedelta
 
 """
 ## Web scraping on Streamlit Cloud with Selenium
@@ -31,8 +38,7 @@ with st.echo():
     options.add_argument("--headless")
 
     driver = get_driver()
-    url_TRI = 'https://www.set.or.th/en/market/index/tri/overview'
-    driver.get(url_TRI)
+    driver.get('https://www.set.or.th/en/market/index/tri/overview')
 
     #index_xpath = '/html/body/div[1]/div/div/div[2]/div/div[2]/div[2]/div/div/div/div/div[2]/div[2]/table/tbody/tr[2]/td[2]'
     #index = driver.find_element(By.XPATH, index_xpath)

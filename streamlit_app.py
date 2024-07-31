@@ -37,8 +37,8 @@ with st.echo():
     options.add_argument("--headless")
 
     driver = get_driver()
-    driver.get('https://example.com/')
-
+    #driver.get('https://example.com/')
+    driver.get('https://www.set.or.th/en/market/index/tri/overview')
     #index_xpath = '/html/body/div[1]/div/div/div[2]/div/div[2]/div[2]/div/div/div/div/div[2]/div[2]/table/tbody/tr[2]/td[2]'
     #index = driver.find_element(By.XPATH, index_xpath)
     #update = driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div[2]/div/div[2]/div[2]/div/div/div/div/div[1]/span')

@@ -34,13 +34,13 @@ with st.echo():
     url_TRI = 'https://www.set.or.th/en/market/index/tri/overview'
     driver.get(url_TRI)
 
-    index_xpath = '/html/body/div[1]/div/div/div[2]/div/div[2]/div[2]/div/div/div/div/div[2]/div[2]/table/tbody/tr[2]/td[2]'
-    index = driver.find_element(By.XPATH, index_xpath)
-    update = driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div[2]/div/div[2]/div[2]/div/div/div/div/div[1]/span')
+    #index_xpath = '/html/body/div[1]/div/div/div[2]/div/div[2]/div[2]/div/div/div/div/div[2]/div[2]/table/tbody/tr[2]/td[2]'
+    #index = driver.find_element(By.XPATH, index_xpath)
+    #update = driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div[2]/div/div[2]/div[2]/div/div/div/div/div[1]/span')
 
-    index_float = float(index.text.replace(",",""))
+    #index_float = float(index.text.replace(",",""))
 
-    TRI = {'index':index_float, 'update':update.text[6:]}
+    #TRI = {'index':index_float, 'update':update.text[6:]}
 
-    st.write(TRI)
-    #st.code(driver.page_source)
+    #st.write(TRI)
+    st.code(driver.page_source)

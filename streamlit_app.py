@@ -4,7 +4,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 import numpy as np
 import pandas as pd
-import yfinance as yf
+#import yfinance as yf
 from datetime import datetime, timedelta
 
 """

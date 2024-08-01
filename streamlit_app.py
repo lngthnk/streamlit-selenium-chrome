@@ -46,11 +46,11 @@ with st.echo():
         index_float = float(index.text.replace(",",""))
 
         TRI = {'index':index_float, 'update':update.text[6:]}
-        driver.quit()
+        #driver.quit()
         return TRI
     
     def check_SET50_price():
-        driver = get_driver()
+        #driver = get_driver()
         url = 'https://www.set.or.th/en/market/index/set50/overview'
         driver.get(url)
 
@@ -66,6 +66,8 @@ with st.echo():
         driver.quit()
 
         return SET50
+    
+    driver = get_driver()
     options = Options()
     options.add_argument("--disable-gpu")
     options.add_argument("--headless")

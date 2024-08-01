@@ -47,6 +47,8 @@ with st.echo():
     index_float = float(index.text.replace(",",""))
 
     TRI = {'index':index_float, 'update':update.text[6:]}
+    check_TRI_date = datetime.strptime(TRI['update'], '%d %b %Y')
+
 
     #url_SET50 = 'https://www.set.or.th/en/market/index/set50/overview'
     #driver.get(url_SET50)
@@ -60,6 +62,6 @@ with st.echo():
     #SET50 = {'index':index_float, 'update': index_update.text}
 
     #df_tri = pd.DataFrame({'SET50':[SET50['index']], 'SET50_TRI':[TRI['index']]}, index = [TRI['update'].strftime("%d/%m/%Y")])
-    df_tri = pd.DataFrame({'SET50_TRI':[TRI['index']]}, index = [TRI['update'].strftime("%d/%m/%Y")])
+    df_tri = pd.DataFrame({'SET50_TRI':[TRI['index']]}, index = [check_TRI_date.strftime("%d/%m/%Y")])
     st.dataframe(df_tri)
     #st.code(driver.page_source)

@@ -70,12 +70,12 @@ with st.echo():
     options.add_argument("--disable-gpu")
     options.add_argument("--headless")
 
-    TRI = check_TRI_price()
+    #TRI = check_TRI_price()
     SET50 = check_SET50_price()
-    check_TRI_date = datetime.strptime(TRI['update'], '%d %b %Y')
+    #check_TRI_date = datetime.strptime(TRI['update'], '%d %b %Y')
 
-
-    df_tri = pd.DataFrame({'SET50':[SET50['index']], 'SET50_TRI':[TRI['index']]}, index = [check_TRI_date.strftime("%d/%m/%Y")])
+    st.write(SET50)
+    #df_tri = pd.DataFrame({'SET50':[SET50['index']], 'SET50_TRI':[TRI['index']]}, index = [check_TRI_date.strftime("%d/%m/%Y")])
     #df_tri = pd.DataFrame({'SET50_TRI':[TRI['index']]}, index = [check_TRI_date.strftime("%d/%m/%Y")])
     #st.dataframe(df_tri)
     #st.code(driver.page_source)

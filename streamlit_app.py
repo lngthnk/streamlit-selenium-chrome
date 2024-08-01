@@ -50,18 +50,18 @@ with st.echo():
     check_TRI_date = datetime.strptime(TRI['update'], '%d %b %Y')
 
 
-    #url_SET50 = 'https://www.set.or.th/en/market/index/set50/overview'
-    #driver.get(url_SET50)
-    #index_xpath = '/html/body/div[1]/div/div/div[2]/div/div[1]/div[2]/div[2]/div[1]/div[2]/div[2]'
-    #update_xpath = '/html/body/div[1]/div/div/div[2]/div/div[1]/div[3]/div/div[1]/div[2]/span'
-    #index = driver.find_element(By.XPATH, index_xpath)
-    #index_update = driver.find_element(By.XPATH, update_xpath)
+    url_SET50 = 'https://www.set.or.th/en/market/index/set50/overview'
+    driver.get(url_SET50)
+    index_xpath = '/html/body/div[1]/div/div/div[2]/div/div[1]/div[2]/div[2]/div[1]/div[2]/div[2]'
+    update_xpath = '/html/body/div[1]/div/div/div[2]/div/div[1]/div[3]/div/div[1]/div[2]/span'
+    index = driver.find_element(By.XPATH, index_xpath)
+    index_update = driver.find_element(By.XPATH, update_xpath)
 
-    #index_float = float(index.text.replace(",",""))
+    index_float = float(index.text.replace(",",""))
 
-    #SET50 = {'index':index_float, 'update': index_update.text}
+    SET50 = {'index':index_float, 'update': index_update.text}
 
-    #df_tri = pd.DataFrame({'SET50':[SET50['index']], 'SET50_TRI':[TRI['index']]}, index = [TRI['update'].strftime("%d/%m/%Y")])
-    df_tri = pd.DataFrame({'SET50_TRI':[TRI['index']]}, index = [check_TRI_date.strftime("%d/%m/%Y")])
+    df_tri = pd.DataFrame({'SET50':[SET50['index']], 'SET50_TRI':[TRI['index']]}, index = [check_TRI_date.strftime("%d/%m/%Y")])
+    #df_tri = pd.DataFrame({'SET50_TRI':[TRI['index']]}, index = [check_TRI_date.strftime("%d/%m/%Y")])
     st.dataframe(df_tri)
     #st.code(driver.page_source)

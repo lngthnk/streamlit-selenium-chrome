@@ -67,11 +67,11 @@ with st.echo():
 
         return SET50
     
-    driver = get_driver()
+
     options = Options()
     options.add_argument("--disable-gpu")
     options.add_argument("--headless")
-
+    driver = get_driver()
     #TRI = check_TRI_price()
     SET50 = check_SET50_price()
     #check_TRI_date = datetime.strptime(TRI['update'], '%d %b %Y')

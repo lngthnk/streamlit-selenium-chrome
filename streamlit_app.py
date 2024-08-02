@@ -66,18 +66,30 @@ with st.echo():
         #driver.quit()
 
         return SET50
-    
+    def page_source(url):
+        driver = get_driver()
+
+        driver.get(url)
+        st.code(driver.page_source, language='html', line_numbers= 5)
+
+        driver.quit()
+
+
 
     options = Options()
     options.add_argument("--disable-gpu")
     options.add_argument("--headless")
-    driver = get_driver()
-    TRI = check_TRI_price()
-    SET50 = check_SET50_price()
-    check_TRI_date = datetime.strptime(TRI['update'], '%d %b %Y')
+    #driver = get_driver()
+    #TRI = check_TRI_price()
+    #SET50 = check_SET50_price()
+    #check_TRI_date = datetime.strptime(TRI['update'], '%d %b %Y')
+    page_source('https://www.set.or.th/en/market/index/tri/overview')
+    
+    page_source('https://www.set.or.th/en/market/index/set50/overview')
+
 
     #st.write(SET50)
-    df_tri = pd.DataFrame({'SET50':[SET50['index']], 'SET50_TRI':[TRI['index']]}, index = [check_TRI_date.strftime("%d/%m/%Y")])
+    #df_tri = pd.DataFrame({'SET50':[SET50['index']], 'SET50_TRI':[TRI['index']]}, index = [check_TRI_date.strftime("%d/%m/%Y")])
     #df_tri = pd.DataFrame({'SET50_TRI':[TRI['index']]}, index = [check_TRI_date.strftime("%d/%m/%Y")])
-    st.dataframe(df_tri)
+    #st.dataframe(df_tri)
     #st.code(driver.page_source)

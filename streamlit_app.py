@@ -70,8 +70,8 @@ with st.echo():
         driver = get_driver()
 
         driver.get(url)
-        expander = st.expander("see code")
-        expander.write(st.code(driver.page_source, language='html', line_numbers= 5))
+        
+        st.write(driver.page_source, language='html', line_numbers= 5)
 
         driver.close()
 

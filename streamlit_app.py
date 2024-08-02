@@ -63,7 +63,7 @@ with st.echo():
 
         SET50 = {'index':index_float, 'update': index_update.text}
 
-        driver.quit()
+        #driver.quit()
 
         return SET50
     

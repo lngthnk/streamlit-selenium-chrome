@@ -70,7 +70,8 @@ with st.echo():
         driver = get_driver()
 
         driver.get(url)
-        st.code(driver.page_source, language='html', line_numbers= 5)
+        expander = st.expander("see code")
+        expander.write(st.code(driver.page_source, language='html', line_numbers= 5))
 
         driver.close()
 
@@ -79,13 +80,13 @@ with st.echo():
     options = Options()
     options.add_argument("--disable-gpu")
     options.add_argument("--headless")
-    #driver = get_driver()
+    driver = get_driver()
     #TRI = check_TRI_price()
     #SET50 = check_SET50_price()
     #check_TRI_date = datetime.strptime(TRI['update'], '%d %b %Y')
-    page_source('https://www.set.or.th/en/market/index/tri/overview')
+    page_source('https://www.justwatch.com/')
     
-    page_source('https://www.set.or.th/en/market/index/set50/overview')
+    page_source('https://www.koyeb.com/docs/build-and-deploy/build-from-git')
 
 
     #st.write(SET50)

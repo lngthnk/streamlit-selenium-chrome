@@ -72,7 +72,7 @@ with st.echo():
         driver.get(url)
         st.code(driver.page_source, language='html', line_numbers= 5)
 
-        driver.quit()
+        driver.close()
 
 
 

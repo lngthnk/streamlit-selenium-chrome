@@ -34,7 +34,7 @@ with st.echo():
 
 
     def check_TRI_price():
-        driver = get_driver()
+        #driver = get_driver()
         url = 'https://www.set.or.th/en/market/index/tri/overview'
         driver.get(url)
 

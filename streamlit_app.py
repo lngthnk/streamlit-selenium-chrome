@@ -86,6 +86,6 @@ with st.echo():
 
     uploaded_files = st.file_uploader("Choose a CSV file", accept_multiple_files=True)
     if uploaded_files != []:
-        uploaded_files = uploaded_files.sort()
+        #uploaded_files = uploaded_files.sort()
         st.write(uploaded_files)
 

@@ -81,11 +81,19 @@ with st.echo():
     options.add_argument("--disable-gpu")
     options.add_argument("--headless")
     driver = get_driver()
-    df_tri = dl_set50()
-    st.dataframe(df_tri)
+    #df_tri = dl_set50()
+    #st.dataframe(df_tri)
 
     uploaded_files = st.file_uploader("Choose a CSV file", accept_multiple_files=True)
-    if uploaded_files != []:
+    if len(uploaded_files) == []:
         #uploaded_files = uploaded_files.sort()
         st.write(uploaded_files)
+        if uploaded_files[0].name = 'SET50TRI_Close.csv':
+            SET50_data = pd.read_csv(uploaded_files[0].upload_url, index_col = 'DATE')
+            price_data = pd.read_csv(uploaded_files[1].upload_url, index_col='Date')
+        else:
+            SET50_data = pd.read_csv(uploaded_files[1].upload_url, index_col = 'DATE')
+            price_data = pd.read_csv(uploaded_files[0].upload_url, index_col='Date')
 
+st.dataframe(SET50_data.tail())
+st.dataframe(price_data.tail())

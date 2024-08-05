@@ -3,7 +3,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 import numpy as np
 import pandas as pd
-#import yfinance as yf
+import yfinance as yf
 from datetime import datetime, timedelta
 
 """
@@ -67,14 +67,13 @@ with st.echo():
 
         return SET50
     
-    def page_source(url):
-        driver = get_driver()
+    def dl_set50():
+        TRI = check_TRI_price()
+        SET50 = check_SET50_price()
+        check_TRI_date = datetime.strptime(TRI['update'], '%d %b %Y')
+        df = pd.DataFrame({'SET50':[SET50['index']], 'SET50_TRI':[TRI['index']]}, index = [check_TRI_date.strftime("%d/%m/%Y")])
 
-        driver.get(url)
-        
-        st.code(driver.page_source, language='html', line_numbers= 5)
-
-        driver.close()
+        return df
 
 
 
@@ -82,14 +81,11 @@ with st.echo():
     options.add_argument("--disable-gpu")
     options.add_argument("--headless")
     driver = get_driver()
-    TRI = check_TRI_price()
-    SET50 = check_SET50_price()
-    check_TRI_date = datetime.strptime(TRI['update'], '%d %b %Y')
-
-
-
-    #st.write(SET50)
-    df_tri = pd.DataFrame({'SET50':[SET50['index']], 'SET50_TRI':[TRI['index']]}, index = [check_TRI_date.strftime("%d/%m/%Y")])
-    #df_tri = pd.DataFrame({'SET50_TRI':[TRI['index']]}, index = [check_TRI_date.strftime("%d/%m/%Y")])
+    df_tri = dl_set50()
     st.dataframe(df_tri)
-    #st.code(driver.page_source)
+
+    uploaded_files = st.file_uploader("Choose a CSV file", accept_multiple_files=True)
+    if uploaded_files != []:
+        uploaded_files = uploaded_files.sort()
+        st.write(uploaded_files)
+

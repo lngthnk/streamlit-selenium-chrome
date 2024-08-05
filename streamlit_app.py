@@ -85,9 +85,14 @@ with st.echo():
     #st.dataframe(df_tri)
 
     uploaded_files = st.file_uploader("Choose a CSV file", accept_multiple_files=True)
-    if len(uploaded_files) == []:
+    if len(uploaded_files) == 2:
         #uploaded_files = uploaded_files.sort()
         st.write(uploaded_files)
+        try:
+            st.write(uploaded_files[0].upload_url)
+        except:
+            st.write(uploaded_files[0][upload_url])
+
         if uploaded_files[0].name == 'SET50TRI_Close.csv':
             SET50_data = pd.read_csv(uploaded_files[0].upload_url, index_col = 'DATE')
             price_data = pd.read_csv(uploaded_files[1].upload_url, index_col='Date')
@@ -95,5 +100,5 @@ with st.echo():
             SET50_data = pd.read_csv(uploaded_files[1].upload_url, index_col = 'DATE')
             price_data = pd.read_csv(uploaded_files[0].upload_url, index_col='Date')
 
-st.dataframe(SET50_data.tail())
-st.dataframe(price_data.tail())
+        st.dataframe(SET50_data.tail())
+        st.dataframe(price_data.tail())

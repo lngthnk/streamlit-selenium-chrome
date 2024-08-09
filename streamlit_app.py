@@ -101,3 +101,5 @@ with st.echo():
 
         st.dataframe(SET50_data.tail())
         st.dataframe(price_data.tail())
+
+    pd.read_excel('https://www.set.or.th/dat/eod/listedcompany/static/listedCompanies_th_TH.xls', engine='calamine', skiprows=1)

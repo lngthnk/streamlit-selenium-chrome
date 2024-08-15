@@ -145,6 +145,7 @@ with st.echo():
 
             st.dataframe(df_tri)
             st.dataframe(new_price_data)
+            st.write(datetime.today().strftime('%Y-%m-%d'))
     else:
         st.write('please upload corrected files')
         

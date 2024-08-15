@@ -128,8 +128,8 @@ with st.echo():
             SET50_data = pd.read_csv(uploaded_files[0], index_col ='DATE')
             price_data = pd.read_csv(uploaded_files[1], index_col='Date')
         elif uploaded_files[0].name == 'SET_MAI_Close.csv':
-            SET50_data = pd.read_csv(uploaded_files[1], index_col ='Date')
-            price_data = pd.read_csv(uploaded_files[0], index_col='DATE')
+            SET50_data = pd.read_csv(uploaded_files[0], index_col ='Date')
+            price_data = pd.read_csv(uploaded_files[1], index_col='DATE')
 
         options = Options()
         options.add_argument("--disable-gpu")

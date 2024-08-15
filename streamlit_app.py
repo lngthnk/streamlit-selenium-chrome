@@ -67,13 +67,19 @@ with st.echo():
 
         return SET50
     
-    def dl_set50():
+    def dl_set50(SET50_data):
         TRI = check_TRI_price()
         SET50 = check_SET50_price()
         check_TRI_date = datetime.strptime(TRI['update'], '%d %b %Y')
-        df = pd.DataFrame({'SET50':[SET50['index']], 'SET50_TRI':[TRI['index']]}, index = [check_TRI_date.strftime("%d/%m/%Y")])
+        check_data_date = datetime.strptime(SET50_data.index[-1], '%d/%m/%Y')
 
-        return df
+        if check_TRI_date > check_data_date:
+            df_tri = pd.DataFrame({'SET50':[SET50['index']], 'SET50_TRI':[TRI['index']]}, index = [check_TRI_date.strftime("%d/%m/%Y")])
+            df_tri.index.name = 'DATE'
+            df_tri2 = pd.concat([SET50_data,df_tri])
+        else:
+            st.write('data is up to date')
+        return df_tri2
 
     def del_time(df_to_del):
         date_str = []
@@ -91,7 +97,6 @@ with st.echo():
         return df_to_del
 
     def download_pricedata(old_price_data):
-        old_price_data = pd.read_csv("SET_MAI_Close.csv", index_col='Date')
         old_price_data = del_time(old_price_data)
         tic_list = old_price_data.columns.to_list()
         SET_MAI = []
@@ -114,69 +119,34 @@ with st.echo():
         price_data3.index.name = 'Date'
 
         return price_data
-    def download_set50():
-        options = Options()
-        options.add_argument("--disable-gpu")
-        options.add_argument("--headless")
-        driver = get_driver()
-
-        TRI_url = 'https://www.set.or.th/en/market/index/tri/overview'
-        driver.get(TRI_url)
-
-        #SET50 TRI
-        index_xpath = '/html/body/div[1]/div/div/div[2]/div/div[2]/div[2]/div/div/div/div/div[2]/div[2]/table/tbody/tr[2]/td[2]'
-        index = driver.find_element(By.XPATH, index_xpath)
-        update = driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div[2]/div/div[2]/div[2]/div/div/div/div/div[1]/span')
-
-        index_float = float(index.text.replace(",",""))
-
-        TRI = {'index':index_float, 'update':update.text[6:]}
-
-
-        SET50_url = 'https://www.set.or.th/en/market/index/set50/overview'
-        driver.get(SET50_url)
-
-        index_xpath = '/html/body/div[1]/div/div/div[2]/div/div[1]/div[2]/div[2]/div[1]/div[2]/div[2]'
-        update_xpath = '/html/body/div[1]/div/div/div[2]/div/div[1]/div[3]/div/div[1]/div[2]/span'
-        index = driver.find_element(By.XPATH, index_xpath)
-        index_update = driver.find_element(By.XPATH, update_xpath)
-
-        index_float = float(index.text.replace(",",""))
-
-        SET50 = {'index':index_float, 'update': index_update.text}
-
-        check_TRI_date = datetime.strptime(TRI['update'], '%d %b %Y')
-        df = pd.DataFrame({'SET50':[SET50['index']], 'SET50_TRI':[TRI['index']]}, index = [check_TRI_date.strftime("%d/%m/%Y")])
-
-        return df
-
-
-    try:
-        options = Options()
-        options.add_argument("--disable-gpu")
-        options.add_argument("--headless")
-        driver = get_driver()
-        df_tri = dl_set50()
-        st.dataframe(df_tri)
-    except:
-        st.write("please reboot")
-
-
-
-
+    
+    
     uploaded_files = st.file_uploader("Choose a CSV file", accept_multiple_files=True)
     if len(uploaded_files) == 2:
-
-        st.write(uploaded_files)
 
         if uploaded_files[0].name == 'SET50TRI_Close.csv':
             SET50_data = pd.read_csv(uploaded_files[0], index_col ='DATE')
             price_data = pd.read_csv(uploaded_files[1], index_col='Date')
-        else:
+        elif uploaded_files[0].name == 'SET_MAI_Close.csv':
             SET50_data = pd.read_csv(uploaded_files[1], index_col ='Date')
             price_data = pd.read_csv(uploaded_files[0], index_col='DATE')
 
-        st.dataframe(SET50_data.tail())
-        st.dataframe(price_data.tail())
+        options = Options()
+        options.add_argument("--disable-gpu")
+        options.add_argument("--headless")
+        driver = get_driver()
+        try:
+            df_tri = dl_set50(SET50_data)
+            st.dataframe(df_tri)
+        except:
+            st.write("please reboot")
 
+        if isinstance(df_tri, pd.DataFrame):
+            price_data = download_pricedata(price_data)
+
+        st.dataframe(df_tri)
+        st.dataframe(price_data)
+    else:
+        st.write('please upload corrected files')
+        
     #pd.read_excel('https://www.set.or.th/dat/eod/listedcompany/static/listedCompanies_th_TH.xls', engine='calamine', skiprows=1)

@@ -109,7 +109,6 @@ with st.echo():
         present_date = datetime.today().strftime('%Y-%m-%d')
         #download lastest to present date
         price_data2 = yf.download(SET_MAI, start=lastest_date, end=present_date )['Close']
-        st.dataframe(price_data2)
         price_data2.columns = [col[:-3] for col in price_data2.columns]
         #combine
         price_data4 = del_time(old_price_data)
@@ -118,7 +117,7 @@ with st.echo():
         #price_data3 = price_data3.drop_duplicates(subset='Date')
         price_data3.index.name = 'Date'
 
-        return price_data
+        return price_data3
     
     
     uploaded_files = st.file_uploader("Choose a CSV file", accept_multiple_files=True)

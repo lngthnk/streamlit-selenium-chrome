@@ -119,6 +119,7 @@ with st.echo():
         options.add_argument("--disable-gpu")
         options.add_argument("--headless")
         driver = get_driver()
+
         TRI_url = 'https://www.set.or.th/en/market/index/tri/overview'
         driver.get(TRI_url)
 
@@ -151,7 +152,11 @@ with st.echo():
 
 
     try:
-        df_tri = download_set50()
+        options = Options()
+        options.add_argument("--disable-gpu")
+        options.add_argument("--headless")
+        driver = get_driver()
+        df_tri = dl_set50()
         st.dataframe(df_tri)
     except:
         st.write("please reboot")

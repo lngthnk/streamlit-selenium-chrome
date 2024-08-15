@@ -137,15 +137,14 @@ with st.echo():
         driver = get_driver()
         try:
             df_tri = dl_set50(SET50_data)
-            st.dataframe(df_tri)
         except:
             st.write("please reboot")
 
         if isinstance(df_tri, pd.DataFrame):
-            price_data = download_pricedata(price_data)
+            new_price_data = download_pricedata(price_data)
 
-        st.dataframe(df_tri)
-        st.dataframe(price_data)
+            st.dataframe(df_tri)
+            st.dataframe(new_price_data)
     else:
         st.write('please upload corrected files')
         

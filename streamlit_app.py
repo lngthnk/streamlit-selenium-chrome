@@ -109,6 +109,7 @@ with st.echo():
         present_date = datetime.today().strftime('%Y-%m-%d')
         #download lastest to present date
         price_data2 = yf.download(SET_MAI, start=lastest_date, end=present_date )['Close']
+        st.dataframe(price_data2)
         price_data2.columns = [col[:-3] for col in price_data2.columns]
         #combine
         price_data4 = del_time(old_price_data)
@@ -145,7 +146,6 @@ with st.echo():
 
             st.dataframe(df_tri)
             st.dataframe(new_price_data)
-            st.write(datetime.today().strftime('%Y-%m-%d'))
     else:
         st.write('please upload corrected files')
         

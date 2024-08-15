@@ -106,13 +106,12 @@ with st.echo():
         lastest_date = old_price_data.index[-1]
         lastest_date = datetime.strptime(lastest_date, '%Y-%m-%d')+ timedelta(days = 1)
         lastest_date = lastest_date.strftime('%Y-%m-%d')
-        #present_date = (datetime.today() - timedelta(days = 1)).strftime('%Y-%m-%d')
         present_date = datetime.today().strftime('%Y-%m-%d')
         #download lastest to present date
         price_data2 = yf.download(SET_MAI, start=lastest_date, end=present_date )['Close']
         price_data2.columns = [col[:-3] for col in price_data2.columns]
         #combine
-        price_data4 = del_time(price_data)
+        price_data4 = del_time(old_price_data)
         price_data5 = del_time(price_data2)
         price_data3 = pd.concat([price_data4, price_data5])
         #price_data3 = price_data3.drop_duplicates(subset='Date')
@@ -136,7 +135,8 @@ with st.echo():
         options.add_argument("--headless")
         driver = get_driver()
         try:
-            df_tri = dl_set50(SET50_data)
+            #df_tri = dl_set50(SET50_data)
+            df_tri = SET50_data
         except:
             st.write("please reboot")
 

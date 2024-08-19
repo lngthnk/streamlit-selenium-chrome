@@ -181,10 +181,13 @@ if len(uploaded_files) == 2:
     if add_ticker_uploaded_files[0].name == 'listedCompanies_en_US.csv':
         Ticker_df = pd.read_csv(add_ticker_uploaded_files[0],skiprows=1,encoding = "ISO-8859-1")
         price_data = pd.read_csv(add_ticker_uploaded_files[1], index_col='Date')
+        st.write('a')
     elif add_ticker_uploaded_files[0].name == 'SET_MAI_Close.csv':
         price_data = pd.read_csv(add_ticker_uploaded_files[0], index_col ='Date')
         Ticker_df = pd.read_csv(add_ticker_uploaded_files[1],skiprows=1,encoding = "ISO-8859-1")
-
+        st.write('b')
+    else:
+        st.write('c')
     new_price_data = download_new_ticker(Ticker_df, price_data)
 
     st.dataframe(new_price_data)

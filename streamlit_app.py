@@ -133,6 +133,8 @@ def download_new_ticker(new_ticker_file,price_data):
         dl_price = yf.download(not_in_list, start=first_date, end=lastest_date )['Close']
         if len(not_in_list) == 1:
             dl_df = dl_price.to_frame(name = not_in_list[0])
+        else:
+            dl_df = dl_price
         
         combine_price_data = pd.concat([price_data, dl_df])
     else:

@@ -174,16 +174,16 @@ st.subheader('download and add new ticker')
 st.write('upload price data file and ticker (csv) from set')
 st.markdown('<a href = "https://www.set.or.th/en/market/information/securities-list/main">donwload here and save as to csv</p>', unsafe_allow_html=True)
 st.write("don't forget to save as csv don't change file name!!!")
-uploaded_files = st.file_uploader("Choose a CSV file", accept_multiple_files=True)
+add_ticker_uploaded_files = st.file_uploader("Choose a CSV file", accept_multiple_files=True)
 
 if len(uploaded_files) == 2:
 
-    if uploaded_files[0].name == 'listedCompanies_en_US.csv':
-        Ticker_df = pd.read_csv(uploaded_files[0],skiprows=1,encoding = "ISO-8859-1")
-        price_data = pd.read_csv(uploaded_files[1], index_col='Date')
-    elif uploaded_files[0].name == 'SET_MAI_Close.csv':
-        price_data = pd.read_csv(uploaded_files[0], index_col ='Date')
-        Ticker_df = pd.read_csv(uploaded_files[1],skiprows=1,encoding = "ISO-8859-1")
+    if add_ticker_uploaded_files[0].name == 'listedCompanies_en_US.csv':
+        Ticker_df = pd.read_csv(add_ticker_uploaded_files[0],skiprows=1,encoding = "ISO-8859-1")
+        price_data = pd.read_csv(add_ticker_uploaded_files[1], index_col='Date')
+    elif add_ticker_uploaded_files[0].name == 'SET_MAI_Close.csv':
+        price_data = pd.read_csv(add_ticker_uploaded_files[0], index_col ='Date')
+        Ticker_df = pd.read_csv(add_ticker_uploaded_files[1],skiprows=1,encoding = "ISO-8859-1")
 
 
 else:

@@ -140,7 +140,7 @@ def download_new_ticker(new_ticker_file,price_data):
     combine_price_data = []
     return combine_price_data
 
-
+st.subheader('download new price')
 uploaded_files = st.file_uploader("upload price data and TRI", accept_multiple_files=True)
 if len(uploaded_files) == 2:
 
@@ -185,6 +185,8 @@ if len(uploaded_files) == 2:
         price_data = pd.read_csv(add_ticker_uploaded_files[0], index_col ='Date')
         Ticker_df = pd.read_csv(add_ticker_uploaded_files[1],skiprows=1,encoding = "ISO-8859-1")
 
+    new_price_data = download_new_ticker(Ticker_df, price_data)
 
+    st.dataframe(new_price_data)
 else:
     st.write('please upload corrected files')

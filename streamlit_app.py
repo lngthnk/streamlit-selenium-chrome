@@ -136,7 +136,7 @@ def download_new_ticker(new_ticker_file,price_data):
         else:
             dl_df = dl_price
         
-        combine_price_data = pd.concat([price_data, dl_df])
+        combine_price_data = pd.concat([price_data, dl_df], axis = 1)
     else:
         combine_price_data = price_data
 

@@ -176,7 +176,7 @@ st.markdown('<a href = "https://www.set.or.th/en/market/information/securities-l
 st.write("don't forget to save as csv don't change file name!!!")
 add_ticker_uploaded_files = st.file_uploader("upload price data and ticker list", accept_multiple_files=True)
 
-if len(uploaded_files) == 2:
+if len(add_ticker_uploaded_files) == 2:
 
     if add_ticker_uploaded_files[0].name == 'listedCompanies_en_US.csv':
         Ticker_df = pd.read_csv(add_ticker_uploaded_files[0],skiprows=1,encoding = "ISO-8859-1")

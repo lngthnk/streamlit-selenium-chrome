@@ -141,7 +141,7 @@ def download_new_ticker(new_ticker_file,price_data):
     return combine_price_data
 
 
-uploaded_files = st.file_uploader("Choose a CSV file", accept_multiple_files=True)
+uploaded_files = st.file_uploader("upload price data and TRI", accept_multiple_files=True)
 if len(uploaded_files) == 2:
 
     if uploaded_files[0].name == 'SET50TRI_Close.csv':
@@ -174,7 +174,7 @@ st.subheader('download and add new ticker')
 st.write('upload price data file and ticker (csv) from set')
 st.markdown('<a href = "https://www.set.or.th/en/market/information/securities-list/main">donwload here and save as to csv</p>', unsafe_allow_html=True)
 st.write("don't forget to save as csv don't change file name!!!")
-add_ticker_uploaded_files = st.file_uploader("Choose a CSV file", accept_multiple_files=True)
+add_ticker_uploaded_files = st.file_uploader("upload price data and ticker list", accept_multiple_files=True)
 
 if len(uploaded_files) == 2:
 

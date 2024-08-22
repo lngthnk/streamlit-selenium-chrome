@@ -69,10 +69,7 @@ def check_SET50_price():
 
 def dl_set50(SET50_data):
 
-    options = Options()
-    options.add_argument("--disable-gpu")
-    options.add_argument("--headless")
-    driver = get_driver()
+
 
     TRI = check_TRI_price()
     SET50 = check_SET50_price()
@@ -183,6 +180,11 @@ def select_option(option, tri_df, price_df, ticker_list):
     st.download_button(label = f'download {option}', data = csv, file_name= name, mine = 'text/csv')
 
     return df
+
+options = Options()
+options.add_argument("--disable-gpu")
+options.add_argument("--headless")
+driver = get_driver()
 
 st.subheader('download new price')
 SET50_data = pd.read_csv('SET50TRI_Close.csv', index_col ='DATE')

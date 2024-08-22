@@ -6,16 +6,6 @@ import pandas as pd
 import yfinance as yf
 from datetime import datetime, timedelta
 
-"""
-## Web scraping on Streamlit Cloud with Selenium
-
-[![Source](https://img.shields.io/badge/View-Source-<COLOR>.svg)](https://github.com/snehankekre/streamlit-selenium-chrome/)
-
-This is a minimal, reproducible example of how to scrape the web with Selenium and Chrome on Streamlit's Community Cloud.
-
-Fork this repo, and edit `/streamlit_app.py` to customize this app to your heart's desire. :heart:
-"""
-
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -202,8 +192,7 @@ with st.form("choose"):
 
 if submitted:
     on_click=select_option(option, tri_df = SET50_data, price_df=price_data, ticker_list=Ticker_list)
-
-
+    st.toast('Get data complete', icon = '🎉')
 
 
 #download new ticker

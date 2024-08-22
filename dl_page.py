@@ -176,7 +176,6 @@ def select_option(option, tri_df, price_df, ticker_list):
             name = 'SET50TRI_Close.csv'
         except:
             st.warning("please reboot")
-            st.stop
     elif option == 'add new ticker to price':
         df = download_new_ticker(ticker_list)
         name = 'SET_MAI_Close.csv'

@@ -68,9 +68,6 @@ def check_SET50_price():
     return SET50
 
 def dl_set50(SET50_data):
-
-
-
     TRI = check_TRI_price()
     SET50 = check_SET50_price()
     check_TRI_date = datetime.strptime(TRI['update'], '%d %b %Y')
@@ -168,11 +165,13 @@ def select_option(option, tri_df, price_df, ticker_list):
         df = download_pricedata(price_df)
         name = 'SET_MAI_Close.csv'
     elif option == 'TRI':
-        try:
+        #try:
+            #df = dl_set50(tri_df)
+            #name = 'SET50TRI_Close.csv'
+        #except:
+            #st.warning("please reboot")
             df = dl_set50(tri_df)
-            name = 'SET50TRI_Close.csv'
-        except:
-            st.warning("please reboot")
+            name = 'SET50TRI_Close.csv'  
     elif option == 'add new ticker to price':
         df = download_new_ticker(ticker_list)
         name = 'SET_MAI_Close.csv'

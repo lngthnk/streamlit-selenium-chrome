@@ -200,8 +200,8 @@ with st.form("choose"):
     option = st.selectbox("What file to download?", ("Price", "TRI", "add new ticker to price"))
     submitted = st.form_submit_button(label = 'get data')
 
-    if submitted:
-        on_click=select_option(option, tri_df = SET50_data, price_df=price_data, ticker_list=Ticker_list)
+if submitted:
+    on_click=select_option(option, tri_df = SET50_data, price_df=price_data, ticker_list=Ticker_list)
 
 
 

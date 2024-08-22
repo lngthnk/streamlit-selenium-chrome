@@ -190,7 +190,7 @@ st.subheader('download new price')
 SET50_data = pd.read_csv('SET50TRI_Close.csv', index_col ='DATE')
 price_data = pd.read_csv('SET_MAI_Close.csv', index_col='Date')
 Ticker_list = pd.read_csv('listedCompanies_en_US.csv',skiprows=1, encoding = "ISO-8859-1")
-tri_price = download_all(SET50_data, price_data)
+#tri_price = download_all(SET50_data, price_data)
 
 with st.form("choose"):
     option = st.selectbox("What file to download?", ("Price", "TRI", "add new ticker to price"))

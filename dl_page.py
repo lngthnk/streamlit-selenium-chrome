@@ -179,7 +179,7 @@ def select_option(option, tri_df, price_df, ticker_list):
     st.download_button(
         label="Download data as CSV",
         data=csv,
-        file_name=name
+        file_name=name,
         mime="text/csv",
     )
 

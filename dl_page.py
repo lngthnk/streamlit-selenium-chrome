@@ -176,7 +176,12 @@ def select_option(option, tri_df, price_df, ticker_list):
         df = download_new_ticker(ticker_list)
         name = 'SET_MAI_Close.csv'
     csv = convert_df(df)
-    st.download_button(label = f'download {option}', data = csv, file_name= name, mine = 'text/csv')
+    st.download_button(
+        label="Download data as CSV",
+        data=csv,
+        file_name=name
+        mime="text/csv",
+    )
 
     return df
 

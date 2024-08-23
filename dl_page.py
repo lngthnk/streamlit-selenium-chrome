@@ -163,7 +163,7 @@ def select_option(option, tri_df, price_df, ticker_list):
             df = dl_set50(tri_df)
             name = 'SET50TRI_Close.csv'  
     elif option == 'add new ticker to price':
-        df = download_new_ticker(ticker_list)
+        df = download_new_ticker(ticker_list,price_df)
         name = 'SET_MAI_Close.csv'
     csv = convert_df(df)
     st.download_button(
